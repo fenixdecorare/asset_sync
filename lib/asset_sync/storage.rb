@@ -194,6 +194,14 @@ module AssetSync
             :content_encoding => 'gzip'
           })
         end
+        # fenix usa svgz mime type
+        if File.extname(f) == ".svgz"
+          mime = MultiMime.lookup("svg")
+          file.merge!({
+            :content_type     => mime,
+            :content_encoding => 'gzip'
+          })
+        end
         log "Uploading: #{f}"
       end
 
